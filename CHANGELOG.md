@@ -1,6 +1,15 @@
 This Changelog file contains useful info about the steps involved in the technical challenge, such as main architectural choices and approaches followed.
 Start from the bottom of the file to follow chronological order.
 
+### API#5
+
+Open points:
+- I'm probably misunderstanding this, currently I have two possible options:
+    1. does it mean that the logged Profile user will add his own money to the balance of the :userId specified in the request? Hence, this should be a balance movement and the 25% based on Jobs will be evaulated on the logged Profile user
+    2. does it mean that the logged Profile user will add money (not his own) into the balance of the :userId specified in the request? Hence, this should be a simple add into the balance of :userId and the 25% based on Jobs will be evaluated on the :userId itself
+
+    I will go with option 2, even if I think is the less reasonable in logical terms
+
 ### API#4
 Notes:
 - I spend some time searching in Sequelize documentation how to retrieve only basic data from Model objects, probably too much time: at the end I used the reload() function to achieve my scope but it is not the optimal choice
