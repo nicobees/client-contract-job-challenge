@@ -17,9 +17,11 @@ app.set('models', sequelize.models)
  * 
  * @returns contract by id
  */
-app.get('/contracts/:id',getProfile ,async (req, res) =>{
+app.get('/contracts/:id', getProfile ,async (req, res) =>{
     const {Contract} = req.app.get('models')
     const {id} = req.params
+
+    /* Repository */
     const contract = await Contract.findOne(
         {
             where: {
@@ -31,7 +33,36 @@ app.get('/contracts/:id',getProfile ,async (req, res) =>{
             }
         }
     )
+    /**************/
+    
     if(!contract) return res.status(404).end()
     res.json(contract)
 })
+
+/**
+ * Get all the non-terminated Contracts of the logged Profile
+ * 
+ * @returns contracts list
+ */
+ app.get('/contracts/', getProfile ,async (req, res) =>{
+    const {Contract} = req.app.get('models')
+    
+    /* Repository */
+    const contracts = await Contract.findAll(
+        {
+            where: {
+                status: {
+                    [Op.notIn]: ['terminated'],
+                },
+                [Op.or]: [
+                    {ClientId: req.profile.id},
+                    {ContractorId: req.profile.id}
+                ]
+            }
+        }
+    )
+    /**************/
+    res.json(contracts)
+})
+
 module.exports = app;
