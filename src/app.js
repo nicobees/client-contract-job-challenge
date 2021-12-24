@@ -263,4 +263,61 @@ app.get('/contracts/:id', getProfile ,async (req, res) =>{
     res.json(await updatedProfile.reload()) // TODO - improve the previous increment call if possible to avoid this reload()
 })
 
+/* @Component: Admin */
+/**
+ * Return best profession in a specific time range
+ * 
+ * @GET
+ * @returns profession
+ */
+ app.get('/admin/best-profession', getProfile, async (req, res) =>{
+    const {Contract, Job, Profile} = req.app.get('models')
+    const {start, end} = req.query
+
+    const startDate = new Date(start)
+    const endDate = new Date(`${end} 23:59:59.999 GMT`)
+
+    /* @Repository */
+    const jobsProfessions = await Job.findAll(
+        {
+            attributes: [
+                'Contract.Contractor.profession', 
+                [sequelize.fn('sum', sequelize.col('price')), 'sumPrice']
+            ],
+            raw: true,
+            where: {
+                [Op.and]: [
+                    { paid: true },
+                    {
+                        paymentDate: {
+                            [Op.gte]: startDate,
+                            [Op.lte]: endDate
+                        }
+                    }
+                ]
+            },
+            include: {
+                model: Contract,
+                as: 'Contract',
+                required: true,
+                attributes: [],
+                include: {
+                    model: Profile,
+                    as: 'Contractor',
+                    required: true,
+                    attributes: []
+                }
+            },
+            group: ['Contract.Contractor.profession']
+        }
+    )
+    /**************/
+
+    const bestProfession = jobsProfessions.reduce(function(prev, current) {
+        return (prev.sumPrice > current.sumPrice) ? prev : current
+    })
+
+    res.json({result: true, data: {profession: bestProfession.profession}})
+})
+
 module.exports = app;
