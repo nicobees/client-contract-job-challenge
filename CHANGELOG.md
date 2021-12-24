@@ -1,6 +1,15 @@
 This Changelog file contains useful info about the steps involved in the technical challenge, such as main architectural choices and approaches followed.
 Start from the bottom of the file to follow chronological order.
 
+### Future improvements (in order of importance):
+1. implement 3-Tier (or 2-Tier) architecture: specific folders and files structure, separate specific APIs into Components, separate request logic (Controller classes) from business logic (Service classes) from DAO logic (Repository classes), implement Dependency Injection and Inversion of Control, reuse of code/logic, improve file readibility, improve code testability
+2. write unit tests (using Jest) for business logic (Service classes)
+3. write end-to-end tests using SuperTest
+
+### API#7
+Notes:
+- I tried to map firstName and lastName into fullName automatically using Sequelize but after some research I did not succed, getter in the Model as well did not worked as (at least me has) expected, hence I manually mapped the result of the response
+
 ### API#6
 Notes:
 - I tried to get maximum value directly through Sequelize but after some research I just found something a bit tricky, then I prefered to get maximum value at javascript side
