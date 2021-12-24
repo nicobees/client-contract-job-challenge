@@ -10,7 +10,11 @@ app.set('sequelize', sequelize)
 app.set('models', sequelize.models)
 
 /**
- * FIX ME!
+ * Get Contract by Id
+ * 
+ * If the logged Profile is not "owner" of the Contract then return 404 NotFound
+ * Both Client and Contractor are considered "owners" of the Contract
+ * 
  * @returns contract by id
  */
 app.get('/contracts/:id',getProfile ,async (req, res) =>{
