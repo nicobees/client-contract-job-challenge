@@ -1,8 +1,11 @@
 This Changelog file contains useful info about the steps involved in the technical challenge, such as main architectural choices and approaches followed.
 Start from the bottom of the file to follow chronological order.
 
-### API#5
+### API#6
+Notes:
+- I tried to get maximum value directly through Sequelize but after some research I just found something a bit tricky, then I prefered to get maximum value at javascript side
 
+### API#5
 Open points:
 - I'm probably misunderstanding this, currently I have two possible options:
     1. does it mean that the logged Profile user will add his own money to the balance of the :userId specified in the request? Hence, this should be a balance movement and the 25% based on Jobs will be evaulated on the logged Profile user
