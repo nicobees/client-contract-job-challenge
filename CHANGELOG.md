@@ -6,6 +6,10 @@ Start from the bottom of the file to follow chronological order.
 2. write unit tests (using Jest) for business logic (Service classes)
 3. write end-to-end tests using SuperTest
 
+---
+
+## v1.0.0
+
 ### API#7
 Notes:
 - I tried to map firstName and lastName into fullName automatically using Sequelize but after some research I did not succed, getter in the Model as well did not worked as (at least me has) expected, hence I manually mapped the result of the response
