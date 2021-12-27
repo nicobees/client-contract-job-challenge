@@ -5,6 +5,7 @@ const { getProfile } = require('../middleware')
 const { ContractController, ContractService, ContractRepository } = require("./contract")
 const { JobController, JobService, JobRepository } = require("./job/")
 const { ProfileController, ProfileService, ProfileRepository } = require("./profile")
+const { AdminController, AdminService, AdminRepository } = require("./admin")
 
 const initContainer = (app) => {
     const routerInstances = []
@@ -27,6 +28,11 @@ const initContainer = (app) => {
     const jobService = new JobService(jobRepository)
     const jobController = new JobController(middlewares, jobService)
     routerInstances.push(jobController.getRouter())
+
+    const adminRepository = new AdminRepository(sequelize)
+    const adminService = new AdminService(adminRepository)
+    const adminController = new AdminController(middlewares, adminService)
+    routerInstances.push(adminController.getRouter())
 
     return {
         routers: routerInstances,

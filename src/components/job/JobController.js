@@ -21,7 +21,7 @@ class JobController extends Controller {
      * @GET
      * @returns jobs list
      */
-     getUnpaidJobs = async (req, res, next) => {
+    getUnpaidJobs = async (req, res, next) => {
         const jobs = await this.jobService.getUnpaidJobsInActiveContracts(req.profile.id)
 
         res.json(jobs)
