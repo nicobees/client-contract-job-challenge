@@ -8,6 +8,15 @@ Start from the bottom of the file to follow chronological order.
 
 ---
 
+## v2.0.0
+3-Tier architecture management completed with overall refactoring.
+API#5,6,7 aligned to the 3-Tier architecture
+
+Notes:
+- some best practices of Dependency Injestion and Inversion of Control can not be applied since interfaces and classes typing are missing in Javascript
+
+---
+
 ## v1.0.1
 
 ### 3-Tier architecture
