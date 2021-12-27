@@ -1,22 +1,24 @@
 const {sequelize} = require('../model')
 
-const {getProfile} = require('../middleware/getProfile')
+const { getProfile } = require('../middleware')
 
-const { ContractRepository } = require("./contract/ContractRepository")
-const { ContractService } = require("./contract/ContractService")
-const { ContractController } = require("./contract/ContractController")
-const { ProfileRepository } = require('./profile/ProfileRepository')
-const { JobRepository } = require('./job/JobRepository')
-const { JobService } = require('./job/JobService')
-const { JobController } = require('./job/JobController')
+const { ContractController, ContractService, ContractRepository } = require("./contract")
+const { JobController, JobService, JobRepository } = require("./job/")
+const { ProfileController, ProfileService, ProfileRepository } = require("./profile")
+const { AdminController, AdminService, AdminRepository } = require("./admin")
 
 const initContainer = (app) => {
     const routerInstances = []
     const middlewares = {}
-
-    const profileRepository = new ProfileRepository(sequelize)
-    middlewares.getProfile = getProfile(profileRepository)
     
+    const profileRepository = new ProfileRepository(sequelize)
+    const profileService = new ProfileService(profileRepository)
+    
+    middlewares.getProfile = getProfile(profileService)
+    
+    const profileController = new ProfileController(middlewares, profileService)
+    routerInstances.push(profileController.getRouter())
+
     const contractRepository = new ContractRepository(sequelize)
     const contractService = new ContractService(contractRepository)
     const contractController = new ContractController(middlewares, contractService)
@@ -26,6 +28,11 @@ const initContainer = (app) => {
     const jobService = new JobService(jobRepository)
     const jobController = new JobController(middlewares, jobService)
     routerInstances.push(jobController.getRouter())
+
+    const adminRepository = new AdminRepository(sequelize)
+    const adminService = new AdminService(adminRepository)
+    const adminController = new AdminController(middlewares, adminService)
+    routerInstances.push(adminController.getRouter())
 
     return {
         routers: routerInstances,

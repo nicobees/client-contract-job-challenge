@@ -1,4 +1,4 @@
-const { Service } = require("../../classes/Service.class")
+const { Service } = require("../../classes")
 const { NotFoundError, ClientCanNotPay } = require("../../common/exceptions")
 
 class JobService extends Service {
