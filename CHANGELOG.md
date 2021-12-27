@@ -2,9 +2,18 @@ This Changelog file contains useful info about the steps involved in the technic
 Start from the bottom of the file to follow chronological order.
 
 ### Future improvements (in order of importance):
-1. implement 3-Tier (or 2-Tier) architecture: specific folders and files structure, separate specific APIs into Components, separate request logic (Controller classes) from business logic (Service classes) from DAO logic (Repository classes), implement Dependency Injection and Inversion of Control, reuse of code/logic, improve file readibility, improve code testability
-2. write unit tests (using Jest) for business logic (Service classes)
-3. write end-to-end tests using SuperTest
+- [x] implement 3-Tier (or 2-Tier) architecture: specific folders and files structure, separate specific APIs into Components, separate request logic (Controller classes) from business logic (Service classes) from DAO logic (Repository classes), implement Dependency Injection and Inversion of Control, reuse of code/logic, improve file readibility, improve code testability
+- [ ] write unit tests (using Jest) for business logic (Service classes)
+- [ ] write end-to-end tests using SuperTest
+
+---
+
+## v1.0.1
+
+### 3-Tier architecture
+3-Tier architecture classes, files and folders structure.
+
+!!! IMPORTANT !!! API#5,6,7 still to be aligned to 3-Tier architecture, temporary still in `app.js` file but commented
 
 ---
 
