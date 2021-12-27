@@ -1,4 +1,4 @@
-const { Service } = require("../../classes/Service.class")
+const { Service } = require("../../classes")
 
 class ContractService extends Service {
     contractRepository

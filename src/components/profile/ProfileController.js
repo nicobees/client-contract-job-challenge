@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const { Controller } = require("../../classes/Controller.class")
+const { Controller } = require("../../classes")
 const { BalanceDepositOverMaxLimit } = require("../../common/exceptions")
 
 class ProfileController extends Controller {

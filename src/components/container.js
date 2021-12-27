@@ -1,16 +1,10 @@
 const {sequelize} = require('../model')
 
-const {getProfile} = require('../middleware/getProfile')
+const { getProfile } = require('../middleware')
 
-const { ContractRepository } = require("./contract/ContractRepository")
-const { ContractService } = require("./contract/ContractService")
-const { ContractController } = require("./contract/ContractController")
-const { ProfileRepository } = require('./profile/ProfileRepository')
-const { JobRepository } = require('./job/JobRepository')
-const { JobService } = require('./job/JobService')
-const { JobController } = require('./job/JobController')
-const { ProfileService } = require('./profile/ProfileService')
-const { ProfileController } = require('./profile/ProfileController')
+const { ContractController, ContractService, ContractRepository } = require("./contract")
+const { JobController, JobService, JobRepository } = require("./job/")
+const { ProfileController, ProfileService, ProfileRepository } = require("./profile")
 
 const initContainer = (app) => {
     const routerInstances = []

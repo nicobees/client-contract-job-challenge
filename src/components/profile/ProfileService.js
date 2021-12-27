@@ -1,4 +1,4 @@
-const { Service } = require("../../classes/Service.class")
+const { Service } = require("../../classes")
 const { BalanceDepositOverMaxLimit } = require("../../common/exceptions")
 
 class ProfileService extends Service {

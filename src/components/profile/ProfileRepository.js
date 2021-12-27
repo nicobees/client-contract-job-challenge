@@ -1,6 +1,6 @@
 const { Op } = require("sequelize")
 
-const { Repository } = require("../../classes/Repository.class")
+const { Repository } = require("../../classes")
 
 class ProfileRepository extends Repository {
     constructor(db) {

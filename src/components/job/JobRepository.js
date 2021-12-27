@@ -1,6 +1,6 @@
 const { Op } = require("sequelize")
 
-const { Repository } = require("../../classes/Repository.class")
+const { Repository } = require("../../classes")
 const { JobPayError } = require("../../common/exceptions")
 
 class JobRepository extends Repository {

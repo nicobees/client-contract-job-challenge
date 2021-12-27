@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const { Controller } = require("../../classes/Controller.class")
+const { Controller } = require("../../classes")
 const { NotFoundError, ClientCanNotPay, JobPayError } = require("../../common/exceptions")
 
 class JobController extends Controller {
