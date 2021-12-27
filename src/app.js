@@ -12,59 +12,6 @@ for(const router of routers) {
     app.use('/', router)
 }
 
-// /* @Component: Balance */
-// /**
-//  * Deposit into the balance of the current logged Profile, with specified limits (< 25% of the total Jobs to be paid at the moment of deposit)
-//  * 
-//  * @POST
-//  * @returns job updated
-//  */
-//  app.post('/balances/deposit/:userId', getProfile, async (req, res) =>{
-//     const {Contract, Job, Profile} = req.app.get('models')
-//     const {userId} = req.params
-//     const {deposit} = req.body
-
-//     // 1) Get Job data - to write DRY code refer to API /jobs/:job_id/pay
-//     /* @Repository */
-//     const maxDepositAmount = await Job.sum('price',
-//         {
-//             where: {
-//                 [Op.and]: [
-//                     {[Op.or]: [
-//                         { paid: false },
-//                         { paid: { [Op.is]: null }}
-//                     ]},
-//                     {'$Contract.status$': {
-//                         [Op.notIn]: ['terminated'],
-//                     }},
-//                     {[Op.or]: [
-//                         {'$Contract.ClientId$': userId}
-//                     ]}
-//                 ]
-//             },
-//             include: {
-//                 model: Contract,
-//                 as: 'Contract',
-//                 required: true,
-//                 attributes: []
-//             }
-//         }
-//     )
-//     /**************/
-
-//     /* @Service */
-//     if(deposit > (maxDepositAmount * 0.25)) {
-//         res.status(400).json({result: false, message: `Deposit is more than the 25% of the maximum allowed ${maxDepositAmount}`})
-//     }
-//     /**************/
-    
-//     /* @Repository */
-//     const userProfile = await Profile.findByPk(userId)
-//     const updatedProfile = await userProfile.increment({balance: deposit})
-//     /**************/
-    
-//     res.json(await updatedProfile.reload()) // TODO - improve the previous increment call if possible to avoid this reload()
-// })
 
 // /* @Component: Admin */
 // /**

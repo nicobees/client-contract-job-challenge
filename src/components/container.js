@@ -9,14 +9,21 @@ const { ProfileRepository } = require('./profile/ProfileRepository')
 const { JobRepository } = require('./job/JobRepository')
 const { JobService } = require('./job/JobService')
 const { JobController } = require('./job/JobController')
+const { ProfileService } = require('./profile/ProfileService')
+const { ProfileController } = require('./profile/ProfileController')
 
 const initContainer = (app) => {
     const routerInstances = []
     const middlewares = {}
-
-    const profileRepository = new ProfileRepository(sequelize)
-    middlewares.getProfile = getProfile(profileRepository)
     
+    const profileRepository = new ProfileRepository(sequelize)
+    const profileService = new ProfileService(profileRepository)
+    
+    middlewares.getProfile = getProfile(profileService)
+    
+    const profileController = new ProfileController(middlewares, profileService)
+    routerInstances.push(profileController.getRouter())
+
     const contractRepository = new ContractRepository(sequelize)
     const contractService = new ContractService(contractRepository)
     const contractController = new ContractController(middlewares, contractService)

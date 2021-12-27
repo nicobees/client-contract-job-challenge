@@ -23,9 +23,14 @@ class JobPayError extends BaseError {
 
 }
 
+class BalanceDepositOverMaxLimit extends BaseError {
+
+}
+
 module.exports = {
     BaseError,
     NotFoundError,
     ClientCanNotPay,
-    JobPayError
+    JobPayError,
+    BalanceDepositOverMaxLimit
 }
