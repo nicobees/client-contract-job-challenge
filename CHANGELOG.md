@@ -9,6 +9,7 @@ Start from the bottom of the file to follow chronological order.
 ---
 
 ## v2.0.0
+
 3-Tier architecture management completed with overall refactoring.
 API#5,6,7 aligned to the 3-Tier architecture
 
